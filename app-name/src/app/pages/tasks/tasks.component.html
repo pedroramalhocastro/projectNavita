@@ -1,0 +1,23 @@
+<h2 class="content-block">Marcas</h2>
+
+<dx-data-grid class="dx-card wide-card"
+  [dataSource]="dataSource"
+  [showBorders]="false"
+  [focusedRowEnabled]="true"
+  [focusedRowIndex]="0"
+  [columnAutoWidth]="true"
+  [columnHidingEnabled]="true">
+
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+  <dxi-column dataField="nome" caption="Marcas" dataType="string"></dxi-column>
+
+  <dxi-column [allowFiltering]="false" [allowSorting]="false" cellTemplate="acoesCellTemplate" [width]="135">
+  </dxi-column>
+  <div dataField="codigo" *dxTemplate="let template of 'acoesCellTemplate'">
+      <dx-button type="button" class="btnGrid" style="cursor: pointer; opacity: 0.8;"
+                 (click)="onDetalhesClick(template.data)" text="Detalhes"></dx-button>
+  </div>
+</dx-data-grid>
