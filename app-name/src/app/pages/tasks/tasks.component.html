@@ -14,10 +14,40 @@
 
   <dxi-column dataField="nome" caption="Marcas" dataType="string"></dxi-column>
 
-  <dxi-column [allowFiltering]="false" [allowSorting]="false" cellTemplate="acoesCellTemplate" [width]="135">
+  <dxi-column [allowFiltering]="false" [allowSorting]="false" cellTemplate="acoesCellTemplate" [width]="155">
   </dxi-column>
   <div dataField="codigo" *dxTemplate="let template of 'acoesCellTemplate'">
       <dx-button type="button" class="btnGrid" style="cursor: pointer; opacity: 0.8;"
                  (click)="onDetalhesClick(template.data)" text="Detalhes"></dx-button>
   </div>
 </dx-data-grid>
+
+
+<ng-template #modalMarcas let-modal>
+  <div class="modal-header">
+      <button class="close" aria-label="close" style="cursor: pointer;" type="button" (click)="closeModal('button-4');">
+          <i class="fas fa-times fa-5x" style="font-size: 23px;"></i>
+      </button>
+  </div>
+  <div class="modal-body">
+
+    <dx-data-grid class="dx-card wide-card"
+    [dataSource]="dataSourceModel"
+    [showBorders]="false"
+    [focusedRowEnabled]="true"
+    [focusedRowIndex]="0"
+    [columnAutoWidth]="true"
+    [columnHidingEnabled]="true">
+  
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+  
+
+  </dx-data-grid>
+
+  </div>
+  <div class="modal-footer">
+    <dx-button type="button" class="btn btnCancel" style="cursor: pointer; opacity: 0.8;" data-bs-dismiss="modal" (click)="closeModal('button-4');">Fechar</dx-button>
+  </div>
+</ng-template>
